@@ -66,6 +66,20 @@
             <span id="capslock-on" style="display:none;"><p><img src="images/warning.png" valign="top"> <spring:message code="screen.capslock.on" /></p></span>
         </section>
 
+        <section class="row">
+            <label for="captcha"><spring:message code="screen.welcome.label.captcha" /></label>
+            <spring:message code="screen.welcome.label.captcha.accesskey" var="captchaAccessKey" />
+            <table style="margin: 0 auto;">
+                <tr>
+                    <td>
+                        <form:input cssClass="required" cssErrorClass="error" id="captcha" size="11" tabindex="2" path="captcha"  accesskey="${captchaAccessKey}" htmlEscape="true" autocomplete="off" />
+                    </td>
+                    <td align="left" valign="bottom" style="vertical-align: bottom;">
+                        <img alt="<spring:message code="captcha.required" />" onclick="this.src='captcha.jpg?'+Math.random()" width="93" height="30" src="captcha.jpg">
+                    </td>
+                </tr>
+            </table>
+        </section>
 
         <section class="row btn-row">
            

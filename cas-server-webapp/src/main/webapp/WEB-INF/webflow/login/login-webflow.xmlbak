@@ -4,7 +4,7 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
-    <var name="credential" class="org.jasig.cas.authentication.CustomUsernamePasswordCredential"/>
+    <var name="credential" class="org.jasig.cas.authentication.UsernamePasswordCredential"/>
 
     <!--
     <var name="credential" class="org.jasig.cas.authentication.RememberMeUsernamePasswordCredential" />
@@ -62,7 +62,6 @@
         <binder>
             <binding property="username" required="true"/>
             <binding property="password" required="true"/>
-            <binding property="captcha" required="true"/>
 
             <!--
             <binding property="rememberMe" />
@@ -75,18 +74,12 @@
             <evaluate expression="samlMetadataUIParserAction" />
             -->
         </on-entry>
-        <transition on="submit" bind="true" validate="true" to="captchaValidate"/>
+        <transition on="submit" bind="true" validate="true" to="realSubmit"/>
     </view-state>
-
-    <action-state id="captchaValidate">
-        <evaluate expression="customAuthenticationViaFormAction.validatorCode(flowRequestContext, flowScope.credential, messageContext)" />
-        <transition on="error" to="initializeLogin" />
-        <transition on="success" to="realSubmit" />
-    </action-state>
 
     <action-state id="realSubmit">
         <evaluate
-                expression="customAuthenticationViaFormAction.submit(flowRequestContext, flowScope.credential, messageContext)"/>
+                expression="authenticationViaFormAction.submit(flowRequestContext, flowScope.credential, messageContext)"/>
         <transition on="warn" to="warn"/>
         <!--
         To enable AUP workflows, replace the 'success' transition with the following:

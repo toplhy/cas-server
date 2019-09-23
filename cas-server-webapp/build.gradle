@@ -44,8 +44,10 @@ dependencies {
     compile project(':cas-server-webapp-themes')
     compile project(':cas-server-webapp-validation')
     compile project(':cas-server-support-jdbc')
-    runtime("mysql:mysql-connector-java:8.0.13")
+    runtime("mysql:mysql-connector-java")
+//    runtime("mysql:mysql-connector-java:8.0.13")
     compile(group: 'org.springframework.security', name: 'spring-security-crypto', version:'3.2.9.RELEASE')
+    compile(group: 'com.github.axet', name: 'kaptcha', version:'0.0.9')
 
     compile(group: 'org.pac4j', name: 'spring-webmvc-pac4j', version: springWebmvcPac4jVersion) {
         exclude(group: 'org.springframework', module: 'spring-webmvc')
