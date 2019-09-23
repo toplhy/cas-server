@@ -121,6 +121,11 @@
 
     <action-state id="sendTicketGrantingTicket">
         <evaluate expression="sendTicketGrantingTicketAction"/>
+        <transition to="setServiceBeforeCheck"/>
+    </action-state>
+
+    <action-state id="setServiceBeforeCheck">
+        <evaluate expression="setServiceBeforeCheckAction"/>
         <transition to="serviceCheck"/>
     </action-state>
 
